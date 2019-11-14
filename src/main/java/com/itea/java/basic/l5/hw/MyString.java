@@ -3,7 +3,8 @@ package com.itea.java.basic.l5.hw;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
- * @author
+ * MyString - это класс, с помощью которого мы будем моделировать строку.
+ * Он не будет содержать main метода.
  */
 public class MyString {
 
@@ -13,8 +14,19 @@ public class MyString {
         this.value = value.toCharArray();
     }
 
+    public MyString(char[] value) {
+        this.value = value;
+    }
+
     public MyString concat(MyString another) {
-        throw new NotImplementedException();
+        char[] newValue = new char[value.length + another.value.length];
+        for (int i = 0; i < value.length; i++) {
+            newValue[i] = value[i];
+        }
+        for (int i = 0; i < another.value.length; i++) {
+            newValue[value.length + i] = another.value[i];
+        }
+        return new MyString(newValue);
     }
 
     public char charAt(int index) {
@@ -59,5 +71,9 @@ public class MyString {
 
     public MyString replaceAll(MyString oldSubstring, MyString newSubstring) {
         throw new NotImplementedException();
+    }
+
+    public String toString() {
+        return new String(value);
     }
 }
